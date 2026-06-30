@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>化妆新手步骤与道具状态清单</title>
+  <style>
+    :root {
+      --bg: #fbfaf7;
+      --surface: #ffffff;
+      --surface-2: #f4f1ea;
+      --text: #26221e;
+      --muted: #756d64;
+      --line: #ded7cb;
+      --accent: #9f5b3f;
+      --accent-soft: #f4dfd4;
+      --green: #2f765f;
+      --green-soft: #e4f1ec;
+      --amber: #9a6a1f;
+      --amber-soft: #f7ebd2;
+      --blue: #456c94;
+      --blue-soft: #e1ebf3;
+      --red: #a04438;
+      --red-soft: #f5ddd9;
+      --radius: 18px;
+      --shadow: 0 18px 50px rgba(88, 60, 38, 0.10);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top left, #fff2e8 0, transparent 32rem), var(--bg);
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    .shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+    header { padding: 56px 0 28px; }
+    .hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr); gap: 24px; align-items: stretch; }
+    .hero-card, .panel, .step-card, .summary-card { background: rgba(255,255,255,0.9); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .hero-card { padding: 34px; }
+    .eyebrow { margin: 0 0 12px; color: var(--accent); font-size: 14px; font-weight: 700; letter-spacing: 0.03em; }
+    h1 { margin: 0; font-size: clamp(30px, 5vw, 54px); line-height: 1.08; letter-spacing: -0.04em; }
+    .lead { margin: 18px 0 0; color: var(--muted); font-size: 17px; max-width: 760px; }
+    .hero-side { padding: 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; }
+    .legend { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .legend-item { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 14px; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; flex: 0 0 auto; }
+    .dot.owned { background: var(--accent); }
+    .dot.buy { background: var(--green); }
+    .dot.later { background: var(--blue); }
+    .dot.cancel { background: var(--red); }
+    .tag { display: inline-flex; align-items: center; border-radius: 999px; padding: 3px 9px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+    .tag.owned { color: var(--accent); background: var(--accent-soft); }
+    .tag.buy { color: var(--green); background: var(--green-soft); }
+    .tag.later { color: var(--blue); background: var(--blue-soft); }
+    .tag.cancel { color: var(--red); background: var(--red-soft); }
+    nav { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(14px); background: rgba(251,250,247,0.84); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .nav-inner { display: flex; gap: 8px; overflow-x: auto; padding: 12px 0; }
+    .nav-inner a { flex: 0 0 auto; text-decoration: none; color: var(--muted); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 8px 13px; font-size: 14px; }
+    .nav-inner a:hover { color: var(--text); border-color: #bba999; }
+    main { padding: 32px 0 64px; }
+    .section-title { margin: 34px 0 16px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+    h2 { margin: 0; font-size: 28px; line-height: 1.2; letter-spacing: -0.02em; }
+    .section-title p { margin: 0; color: var(--muted); max-width: 620px; }
+    .status-board { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .summary-card { box-shadow: none; padding: 18px; }
+    .summary-card h3 { margin: 10px 0 8px; font-size: 18px; }
+    .summary-card p { margin: 0; color: var(--muted); font-size: 14px; }
+    .timeline { display: grid; gap: 18px; }
+    .step-card { display: grid; grid-template-columns: 118px minmax(0, 1fr); overflow: hidden; }
+    .step-index { padding: 24px; background: var(--surface-2); border-right: 1px solid var(--line); }
+    .num { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); font-size: 24px; font-weight: 800; }
+    .priority { margin-top: 12px; color: var(--muted); font-size: 13px; }
+    .step-body { padding: 24px; }
+    h3 { margin: 0 0 8px; font-size: 22px; }
+    .purpose { margin: 0 0 18px; color: var(--muted); }
+    .item-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .item { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 13px; min-height: 120px; }
+    .item.owned { border-color: #d4aa96; background: #fff8f4; }
+    .item.buy { border-color: #a8cdbf; background: #f5fbf8; }
+    .item.later { border-color: #b6c9db; background: #f5f9fc; }
+    .item.cancel { border-color: #d7aaa4; background: #fff7f6; }
+    .item-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+    .item strong { display: block; font-size: 15px; line-height: 1.35; }
+    .item p { margin: 0; color: var(--muted); font-size: 13px; }
+    .note { margin-top: 18px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 14px; padding: 14px; color: var(--muted); }
+    footer { color: var(--muted); padding: 24px 0 48px; font-size: 14px; }
+    @media (max-width: 980px) { .hero, .status-board, .item-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 720px) {
+      .hero, .status-board, .item-grid, .step-card { grid-template-columns: 1fr; }
+      .step-index { border-right: 0; border-bottom: 1px solid var(--line); }
+      header { padding-top: 32px; }
+      .hero-card { padding: 24px; }
+      .legend { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="shell">
+    <div class="hero">
+      <section class="hero-card">
+        <p class="eyebrow">化妆新手路线</p>
+        <h1>每一步都能标状态：已有、待买、延后、取消。</h1>
+        <p class="lead">这个版本把化妆步骤里的产品和工具都拆成独立道具卡。你后续买了什么、决定暂缓什么，都可以直接改状态，不用重新整理整个页面。</p>
+      </section>
+      <aside class="hero-side panel">
+        <div>
+          <p class="eyebrow">状态说明</p>
+          <div class="legend">
+            <div class="legend-item"><span class="dot owned"></span><span>已有：手头已经有</span></div>
+            <div class="legend-item"><span class="dot buy"></span><span>待买：优先补齐</span></div>
+            <div class="legend-item"><span class="dot later"></span><span>延后：熟练后再买</span></div>
+            <div class="legend-item"><span class="dot cancel"></span><span>取消：当前不建议买</span></div>
+          </div>
+        </div>
+        <p style="margin:0;color:var(--muted);font-size:14px;">当前策略：刷具已经比较完整了，下一步优先补防晒、卸妆、眉色产品、睫毛和唇妆。</p>
+      </aside>
+    </div>
+  </header>
+
+  <nav>
+    <div class="shell nav-inner">
+      <a href="#summary">状态总览</a>
+      <a href="#prep">妆前</a>
+      <a href="#base">底妆</a>
+      <a href="#set">定妆</a>
+      <a href="#brow">眉毛</a>
+      <a href="#eye">眼妆</a>
+      <a href="#blush">腮红</a>
+      <a href="#contour">修容高光</a>
+      <a href="#lip">唇妆</a>
+      <a href="#remove">卸妆</a>
+    </div>
+  </nav>
+
+  <main class="shell">
+    <section class="section-title" id="summary">
+      <h2>状态总览</h2>
+      <p>先看这一块，就能知道当前最该买什么、什么不用急。</p>
+    </section>
+    <div class="status-board">
+      <article class="summary-card"><span class="tag owned">已有</span><h3>可立即练习</h3><p>妆前、底妆、定妆、腮红、粉扑/美妆蛋，以及散粉刷、修容刷、粉底刷、高光刷、眼影刷、唇刷、遮瑕刷、双头眉刷。</p></article>
+      <article class="summary-card"><span class="tag buy">待买</span><h3>优先补齐</h3><p>日间防晒、卸妆、温和洁面、眉笔/眉粉、修眉刀、睫毛夹、睫毛膏、日常唇妆、刷具清洁用品。</p></article>
+      <article class="summary-card"><span class="tag later">延后</span><h3>熟练后再说</h3><p>YSL B10、3CE 橘棕眼影、M.A.C 小金盒、遮瑕、眼线、定妆喷雾。</p></article>
+      <article class="summary-card"><span class="tag cancel">取消</span><h3>当前不买</h3><p>全套刷具、复杂修容大盘、重复粉底正装盲买。</p></article>
+    </div>
+
+    <section class="section-title">
+      <h2>主要化妆步骤</h2>
+      <p>每张道具卡都带状态，方便后续更新采购进度。</p>
+    </section>
+
+    <div class="timeline">
+      <article class="step-card" id="prep">
+        <div class="step-index"><div class="num">1</div><div class="priority">优先级：高</div></div>
+        <div class="step-body">
+          <h3>妆前：清洁、保湿、防晒</h3>
+          <p class="purpose">让皮肤状态稳定，减少后续卡粉、浮粉、搓泥。</p>
+          <div class="item-grid">
+            <div class="item owned"><div class="item-top"><strong>PLANNER 珀兰娜丝韵柔光妆前乳</strong><span class="tag owned">已有</span></div><p>柔护哑光版，重点涂毛孔、鼻翼、出油区域。顺序：护肤 → 防晒 → 妆前乳 → 粉底。</p></div>
+            <div class="item owned"><div class="item-top"><strong>芬寸咕咕有色面霜 01 玫瑰粉</strong><span class="tag owned">已有</span></div><p>Coucou NUSCENTS 晨雾柔肌油皮有色面霜。可作轻底妆/妆前修色，和粉底叠加时要薄涂。</p></div>
+            <div class="item buy"><div class="item-top"><strong>日间防晒</strong><span class="tag buy">待买</span></div><p>如果手头没有稳定防晒，需要优先补。防晒是日间护肤最后一步。</p></div>
+            <div class="item later"><div class="item-top"><strong>基础保湿乳/霜</strong><span class="tag later">延后</span></div><p>已有有色面霜后先观察妆前保湿是否够用；若仍卡粉起皮，再补基础保湿。</p></div>
+            <div class="item later"><div class="item-top"><strong>水光型妆前乳</strong><span class="tag later">延后</span></div><p>已有哑光妆前乳，水光型可以等确认自己更需要保湿提亮时再买。</p></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="step-card" id="base">
+        <div class="step-index"><div class="num">2</div><div class="priority">优先级：高</div></div>
+        <div class="step-body">
+          <h3>底妆：均匀肤色</h3>
+          <p class="purpose">目标不是变白，而是肤色均匀、边缘自然、脸和脖子不脱节。</p>
+          <div class="item-grid">
+            <div class="item owned"><div class="item-top"><strong>娇兰提洛可光透粉底液</strong><span class="tag owned">已有</span></div><p>Guerlain Terracotta Le Teint Glow，光泽版，35ml。适合中性、干皮、混干皮；油皮少量定妆。</p></div>
+            <div class="item owned"><div class="item-top"><strong>粉底刷 + 美妆蛋 / 粉扑</strong><span class="tag owned">已有</span></div><p>底妆工具已具备。新手可先用粉底刷铺开，再用美妆蛋或粉扑拍匀边缘。</p></div>
+            <div class="item later"><div class="item-top"><strong>YSL 女神粉底液 B10</strong><span class="tag later">延后</span></div><p>已有娇兰粉底，YSL 先不急。若要买，必须下颌线试色，确认 B10 不假白。</p></div>
+            <div class="item owned"><div class="item-top"><strong>遮瑕刷</strong><span class="tag owned">已有</span></div><p>工具已有。后续买遮瑕后，可用于黑眼圈、鼻翼、痘印边缘精细晕染。</p></div>
+            <div class="item later"><div class="item-top"><strong>遮瑕产品</strong><span class="tag later">延后</span></div><p>先练粉底均匀度。黑眼圈、痘印、鼻翼泛红明显时再补。</p></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="step-card" id="set">
+        <div class="step-index"><div class="num">3</div><div class="priority">优先级：高</div></div>
+        <div class="step-body">
+          <h3>定妆：让底妆更稳定</h3>
+          <p class="purpose">减少鼻翼、T 区、眼下脱妆和卡纹。</p>
+          <div class="item-grid">
+            <div class="item owned"><div class="item-top"><strong>花知晓甜心小熊迷你蜜粉饼 色号可可</strong><span class="tag owned">已有</span></div><p>放在定妆步骤。优先局部压鼻翼、T 区、眼下，避免一开始全脸压太厚。</p></div>
+            <div class="item owned"><div class="item-top"><strong>散粉刷 + 粉扑</strong><span class="tag owned">已有</span></div><p>散粉刷适合轻扫全脸，粉扑适合局部压鼻翼、T 区、眼下。</p></div>
+            <div class="item later"><div class="item-top"><strong>定妆喷雾</strong><span class="tag later">延后</span></div><p>不是第一批刚需。等粉类定妆会用了，再考虑用喷雾改善粉感。</p></div>
+            <div class="item later"><div class="item-top"><strong>吸油纸</strong><span class="tag later">延后</span></div><p>如果后续发现 T 区容易出油，再作为补妆工具加入。</p></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="step-card" id="brow">
+        <div class="step-index"><div class="num">4</div><div class="priority">优先级：高</div></div>
+        <div class="step-body">
+          <h3>眉毛：建立面部框架</h3>
+          <p class="purpose">眉毛比复杂眼影更基础，能直接改变精神感。</p>
+          <div class="item-grid">
+            <div class="item buy"><div class="item-top"><strong>眉笔 / 眉粉</strong><span class="tag buy">待买</span></div><p>第一批优先买。颜色接近发色或略浅，先顺着原生眉填空。</p></div>
+            <div class="item owned"><div class="item-top"><strong>双头眉刷</strong><span class="tag owned">已有</span></div><p>画眉后用螺旋刷刷开边界，斜角端可辅助眉粉或眉膏。</p></div>
+            <div class="item buy"><div class="item-top"><strong>修眉刀</strong><span class="tag buy">待买</span></div><p>先少量修杂毛，不要一开始大改眉形。</p></div>
+            <div class="item later"><div class="item-top"><strong>染眉膏</strong><span class="tag later">延后</span></div><p>等眉形和眉色稳定后再买，不是初期必需。</p></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="step-card" id="eye">
+        <div class="step-index"><div class="num">5</div><div class="priority">优先级：中</div></div>
+        <div class="step-body">
+          <h3>眼妆：让眼睛更有神</h3>
+          <p class="purpose">新手先从睫毛开始，再练眼影，最后再考虑眼线。</p>
+          <div class="item-grid">
+            <div class="item buy"><div class="item-top"><strong>睫毛夹</strong><span class="tag buy">待买</span></div><p>比复杂眼影更适合初期提升眼神。</p></div>
+            <div class="item buy"><div class="item-top"><strong>睫毛膏</strong><span class="tag buy">待买</span></div><p>先选自然纤长型，避免一开始追求浓密导致结块。</p></div>
+            <div class="item owned"><div class="item-top"><strong>大号 / 小号眼影刷</strong><span class="tag owned">已有</span></div><p>大号用于铺色，小号用于眼尾、下眼睑和局部加深。</p></div>
+            <div class="item later"><div class="item-top"><strong>3CE 九色眼影 #橘棕盘</strong><span class="tag later">延后</span></div><p>可以买但不急。若眼皮肿，橘棕和珠光要少量用。</p></div>
+            <div class="item later"><div class="item-top"><strong>眼线笔</strong><span class="tag later">延后</span></div><p>等睫毛和基础眼影稳定后再练，先从眼尾或睫毛根部开始。</p></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="step-card" id="blush">
+        <div class="step-index"><div class="num">6</div><div class="priority">优先级：高</div></div>
+        <div class="step-body">
+          <h3>腮红：补回气色</h3>
+          <p class="purpose">底妆之后脸容易显平、显白，腮红负责让妆容活起来。</p>
+          <div class="item-grid">
+            <div class="item owned"><div class="item-top"><strong>花知晓甜心小熊丝缎腮红 05 小熊饼干</strong><span class="tag owned">已有</span></div><p>放在腮红步骤。既然已经有腮红，可以先练取粉量和位置，不急着再买同类。</p></div>
+            <div class="item later"><div class="item-top"><strong>3CE 单色腮红 #裸粉色</strong><span class="tag later">延后</span></div><p>已有花知晓腮红后先暂缓。等确认自己更喜欢裸粉/裸桃色系，再决定是否补。</p></div>
+            <div class="item later"><div class="item-top"><strong>腮红刷</strong><span class="tag later">延后</span></div><p>刷具套装里没有明确腮红刷，可先用散粉刷少量轻扫；若不好控制再补专用腮红刷。</p></div>
+            <div class="item later"><div class="item-top"><strong>腮红膏</strong><span class="tag later">延后</span></div><p>膏状更吃手法，等粉状腮红能控制范围后再考虑。</p></div>
+            <div class="item cancel"><div class="item-top"><strong>多色腮红大盘</strong><span class="tag cancel">取消</span></div><p>初期不需要，容易选择困难，也增加重复消费。</p></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="step-card" id="contour">
+        <div class="step-index"><div class="num">7</div><div class="priority">优先级：低</div></div>
+        <div class="step-body">
+          <h3>修容和高光：进阶塑形</h3>
+          <p class="purpose">增强立体感，但对手法要求高，日常基础妆不是必须。</p>
+          <div class="item-grid">
+            <div class="item later"><div class="item-top"><strong>M.A.C 小金盒高光修容双色盘</strong><span class="tag later">延后</span></div><p>产品不错，但新手容易显脏或显毛孔。等底妆、眉毛、腮红稳定后再买。</p></div>
+            <div class="item owned"><div class="item-top"><strong>修容刷</strong><span class="tag owned">已有</span></div><p>工具已有，但修容练习建议后置，避免底妆还不稳时显脏。</p></div>
+            <div class="item owned"><div class="item-top"><strong>高光刷</strong><span class="tag owned">已有</span></div><p>工具已有。高光仍不是基础刚需，后续少量点涂在面中高点即可。</p></div>
+            <div class="item cancel"><div class="item-top"><strong>复杂修容大盘</strong><span class="tag cancel">取消</span></div><p>当前阶段不建议买，颜色多但真正会用的少。</p></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="step-card" id="lip">
+        <div class="step-index"><div class="num">8</div><div class="priority">优先级：中高</div></div>
+        <div class="step-body">
+          <h3>唇妆：统一气色和风格</h3>
+          <p class="purpose">唇色和腮红一起决定整体气色，新手先买日常色。</p>
+          <div class="item-grid">
+            <div class="item buy"><div class="item-top"><strong>润唇膏</strong><span class="tag buy">待买</span></div><p>口红前先保证嘴唇不干裂，唇妆才干净。</p></div>
+            <div class="item buy"><div class="item-top"><strong>日常口红 / 唇釉</strong><span class="tag buy">待买</span></div><p>先选豆沙、裸桃、玫瑰色，和腮红色调统一。</p></div>
+            <div class="item owned"><div class="item-top"><strong>唇刷</strong><span class="tag owned">已有</span></div><p>适合修唇形边缘。日常也可以直接薄涂，唇刷用于更精细的场景。</p></div>
+            <div class="item later"><div class="item-top"><strong>唇线笔</strong><span class="tag later">延后</span></div><p>修饰唇形时有用，但不是新手第一批刚需。</p></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="step-card" id="remove">
+        <div class="step-index"><div class="num">9</div><div class="priority">优先级：高</div></div>
+        <div class="step-body">
+          <h3>卸妆和工具清洁：保护皮肤</h3>
+          <p class="purpose">只要开始用粉底、眼影、腮红，就要把卸妆和工具清洁放进预算。</p>
+          <div class="item-grid">
+            <div class="item buy"><div class="item-top"><strong>卸妆油 / 卸妆膏 / 卸妆水</strong><span class="tag buy">待买</span></div><p>优先级很高。已有粉底后，卸妆比高光修容更重要。</p></div>
+            <div class="item buy"><div class="item-top"><strong>温和洁面</strong><span class="tag buy">待买</span></div><p>卸妆后配合温和清洁，避免过度清洁。</p></div>
+            <div class="item buy"><div class="item-top"><strong>化妆棉 / 洗脸巾</strong><span class="tag buy">待买</span></div><p>配合卸妆和清洁使用，注意不要用力摩擦。</p></div>
+            <div class="item buy"><div class="item-top"><strong>刷具清洁液 / 清洗皂</strong><span class="tag buy">待买</span></div><p>现在刷具数量已经多了，建议补一个清洁方案，尤其是粉底刷、遮瑕刷和眼影刷。</p></div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="note">
+      建议下一步：你现在已经能练“妆前 → 底妆 → 定妆 → 腮红”这一条线，刷具也基本齐了；优先补“待买”里的防晒、卸妆、眉色产品、睫毛和日常唇妆。“延后”区等基础妆稳定后再重新评估。
+    </div>
+  </main>
+
+  <footer class="shell">
+    <p>资料依据来自前序调研、商品点评和你提供的现有产品信息。后续可以继续补充具体肤质、色号试色、品牌替代和预算版本。</p>
+  </footer>
+</body>
+</html>
