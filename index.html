@@ -58,6 +58,7 @@
     .verdict-row:last-child { border-bottom: 0; }
     .tag { display: inline-flex; align-items: center; border-radius: 999px; padding: 3px 9px; font-size: 12px; font-weight: 700; white-space: nowrap; }
     .tag.keep { color: var(--green); background: var(--green-soft); }
+    .tag.owned { color: var(--accent); background: var(--accent-soft); }
     .tag.try { color: var(--amber); background: var(--amber-soft); }
     .tag.wait { color: var(--blue); background: var(--blue-soft); }
     .tag.pause { color: var(--red); background: var(--red-soft); }
@@ -108,12 +109,14 @@
       <section class="hero-card">
         <p class="eyebrow">化妆新手路线</p>
         <h1>先把日常妆跑通，再进入修容和复杂眼妆。</h1>
-        <p class="lead">这个页面按化妆主要步骤整理：每一步要解决什么问题、需要哪些化妆品和工具，以及你现在准备买的四件产品应该放在哪里。</p>
+        <p class="lead">这个页面按化妆主要步骤整理：每一步要解决什么问题、需要哪些化妆品和工具，以及你手头已有和准备购买的产品应该放在哪里。</p>
       </section>
       <aside class="hero-side panel">
         <div>
-          <p class="eyebrow">当前四件的结论</p>
+          <p class="eyebrow">当前产品的结论</p>
           <div class="verdict">
+            <div class="verdict-row"><span>娇兰提洛可光透粉底</span><span class="tag owned">已有</span></div>
+            <div class="verdict-row"><span>PLANNER 柔光妆前乳</span><span class="tag owned">已有</span></div>
             <div class="verdict-row"><span>3CE 单色腮红</span><span class="tag keep">保留</span></div>
             <div class="verdict-row"><span>YSL 粉底液 B10</span><span class="tag try">先试色</span></div>
             <div class="verdict-row"><span>3CE 橘棕眼影</span><span class="tag wait">不急</span></div>
@@ -153,9 +156,10 @@
           <h3>妆前：清洁、保湿、防晒</h3>
           <p class="purpose">目标是让皮肤状态稳定，减少后续卡粉、浮粉、搓泥。</p>
           <div class="grid">
-            <div class="mini"><h4>需要的化妆品</h4><ul><li>温和洁面</li><li>基础保湿乳/霜</li><li>日间防晒</li><li>妆前乳，可选</li></ul></div>
+            <div class="mini"><h4>需要的化妆品</h4><ul><li>温和洁面</li><li>基础保湿乳/霜</li><li>日间防晒</li><li>妆前乳，按肤质和局部需求使用</li></ul></div>
             <div class="mini"><h4>需要的工具</h4><ul><li>干净毛巾或洗脸巾</li><li>镜子</li><li>纸巾</li></ul></div>
             <div class="mini"><h4>新手提醒</h4><ul><li>护肤不要叠太多</li><li>防晒后等成膜</li><li>起皮时先处理保湿</li></ul></div>
+            <div class="mini your-item"><h4>你手头已有</h4><ul><li><strong>PLANNER 珀兰娜丝韵柔光妆前乳</strong></li><li>柔护哑光版，重点用于毛孔和出油区域</li><li>顺序：护肤 → 防晒 → 妆前乳 → 粉底</li></ul></div>
           </div>
         </div>
       </article>
@@ -168,7 +172,8 @@
           <div class="grid">
             <div class="mini"><h4>需要的化妆品</h4><ul><li>粉底液/气垫/粉饼三选一</li><li>遮瑕，可选</li><li>妆前乳，可选</li></ul></div>
             <div class="mini"><h4>需要的工具</h4><ul><li>美妆蛋</li><li>粉扑</li><li>粉底刷，可选</li></ul></div>
-            <div class="mini your-item"><h4>你的待购物</h4><ul><li><strong>YSL 女神粉底液 B10</strong></li><li>放在底妆步骤</li><li>建议：先试色再买</li></ul></div>
+            <div class="mini your-item"><h4>你手头已有</h4><ul><li><strong>娇兰提洛可光透粉底液</strong></li><li>光泽版，35ml，健康柔光水光肌</li><li>更适合中性、干皮、混干皮；油皮需少量定妆</li></ul></div>
+            <div class="mini your-item"><h4>你的待购物</h4><ul><li><strong>YSL 女神粉底液 B10</strong></li><li>放在底妆步骤</li><li>建议：已有娇兰可先用，YSL 先试色再决定</li></ul></div>
           </div>
         </div>
       </article>
@@ -271,10 +276,10 @@
     </section>
 
     <div class="product-grid">
-      <article class="product-card"><span class="tag keep">第一批</span><h3>底妆 + 工具</h3><p>粉底/气垫、粉扑或美妆蛋、散粉或粉饼。YSL B10 放在这里，但先试色。</p></article>
+      <article class="product-card"><span class="tag owned">已有</span><h3>妆前 + 底妆</h3><p>PLANNER 妆前乳搭配娇兰光透粉底即可先练底妆。YSL B10 不急，先试色再决定。</p></article>
       <article class="product-card"><span class="tag keep">第一批</span><h3>眉毛 + 睫毛</h3><p>眉笔/眉粉、睫毛夹、睫毛膏。它们比复杂眼影更能稳定提升精神感。</p></article>
       <article class="product-card"><span class="tag keep">第一批</span><h3>腮红 + 唇妆</h3><p>3CE 裸粉腮红可以保留，再配一个日常唇色，整体气色会更完整。</p></article>
-      <article class="product-card"><span class="tag try">必须补</span><h3>卸妆清洁</h3><p>只要买了粉底和彩妆，就必须有卸妆产品。这个优先级高于高光修容。</p></article>
+      <article class="product-card"><span class="tag try">必须补</span><h3>卸妆清洁 + 定妆</h3><p>已有粉底和妆前后，优先补卸妆、粉扑/美妆蛋、散粉或粉饼。</p></article>
     </div>
 
     <section class="section-title">
@@ -284,14 +289,14 @@
 
     <div class="checklist">
       <div class="check"><div class="box"></div><div><strong>粉底色号试在下颌线</strong><span>不要只看手背，等 10-30 分钟看氧化和脖子色差。</span></div></div>
-      <div class="check"><div class="box"></div><div><strong>先确认自己的肤质</strong><span>偏干、偏油、混合、敏感会影响粉底和定妆选择。</span></div></div>
+      <div class="check"><div class="box"></div><div><strong>妆前乳先局部用</strong><span>PLANNER 哑光款重点涂鼻翼、毛孔、出油区，干燥区域不要厚涂。</span></div></div>
       <div class="check"><div class="box"></div><div><strong>别把修容高光当刚需</strong><span>它是进阶塑形，不是日常妆的第一步。</span></div></div>
       <div class="check"><div class="box"></div><div><strong>预算留给卸妆和工具</strong><span>美妆蛋、粉扑、睫毛夹、卸妆产品比多买一盘彩妆更重要。</span></div></div>
     </div>
   </main>
 
   <footer class="shell">
-    <p>资料依据来自前序调研和本次商品点评。后续可以继续补充具体肤质、色号试色、品牌替代和预算版本。</p>
+    <p>资料依据来自前序调研、本次商品点评和你提供的现有产品信息。后续可以继续补充具体肤质、色号试色、品牌替代和预算版本。</p>
   </footer>
 </body>
 </html>
